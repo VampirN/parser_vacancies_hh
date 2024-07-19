@@ -1,6 +1,5 @@
 import json
 from typing import Any
-
 import requests
 import psycopg2
 
@@ -46,6 +45,7 @@ def create_db(database_name: str, params: dict) -> None:
     """
     Создание базы данных для сохранения данных о компаниях и вакансиях
     """
+    conn = psycopg2.connect(dbname='hh_info_bd', **params)
     conn.autocommit = True
     cur = conn.cursor()
 

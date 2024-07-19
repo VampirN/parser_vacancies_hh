@@ -1,7 +1,3 @@
-import psycopg2
-from config import config
-
-
 class DBManager:
     """
     Класс для взаимодействия с БД

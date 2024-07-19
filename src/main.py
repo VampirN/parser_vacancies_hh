@@ -1,5 +1,4 @@
 import psycopg2
-
 from config import config
 from utils import get_companies, get_vacancies, create_db, save_data_to_db
 from db_manager import DBManager
@@ -10,8 +9,10 @@ def main():
     vacancies_data = get_vacancies(companies_data)
     params = config()
 
+    create_db('hh_info_bd', params)
 
     conn = psycopg2.connect(dbname='hh_info_bd', **params) # vacancies_hh
+    save_data_to_db(companies_data, vacancies_data, 'hh_info_bd', params)
     conn.close()
 
     conn = psycopg2.connect(dbname='hh_info_bd', **params)
