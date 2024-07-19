@@ -11,11 +11,11 @@ def main():
 
     create_db('hh_info_bd', params)
 
-    conn = psycopg2.connect(dbname='hh_info_bd', **params) # vacancies_hh
+    conn = psycopg2.connect(**params) # vacancies_hh
     save_data_to_db(companies_data, vacancies_data, 'hh_info_bd', params)
     conn.close()
 
-    conn = psycopg2.connect(dbname='hh_info_bd', **params)
+    conn = psycopg2.connect(**params)
     db_m = DBManager(conn)
 
     print("""Введите ваш запрос:

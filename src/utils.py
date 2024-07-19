@@ -45,7 +45,7 @@ def create_db(database_name: str, params: dict) -> None:
     """
     Создание базы данных для сохранения данных о компаниях и вакансиях
     """
-    conn = psycopg2.connect(dbname='hh_info_bd', **params)
+    conn = psycopg2.connect(**params)
     conn.autocommit = True
     cur = conn.cursor()
 
@@ -59,7 +59,7 @@ def create_db(database_name: str, params: dict) -> None:
     cur.close()
     conn.close()
 
-    conn = psycopg2.connect(dbname=database_name, **params)
+    conn = psycopg2.connect(**params)
     with conn.cursor() as cur:
         cur.execute("""
             CREATE TABLE companies (
