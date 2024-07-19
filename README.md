@@ -1,4 +1,4 @@
-# parser_vacancies_hh
+![img.png](img/img.png)
 
 Данная программа умеет парсить данные по вакансиям с сайта HH.ru от компаний,
 которые тебя интересуют(companies_id.json).
