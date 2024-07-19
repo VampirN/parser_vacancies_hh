@@ -6,17 +6,26 @@ from db_manager import DBManager
 
 
 def main():
+    # Получааем компании
     companies_data = get_companies()
+
+    # Получаем вакансии
     vacancies_data = get_vacancies(companies_data)
     params = config()
 
-    create_db('hh_info_bd', params)
+    # Создаём базу данных
+    # create_db( **params) # hh_info_bd,
+    create_db("hh_info_db", **params)
 
+    # Осуществляем подключение к базе данных
     conn = psycopg2.connect(dbname='hh_info_bd', **params) # vacancies_hh
-    save_data_to_db(companies_data, vacancies_data, 'hh_info_bd', params)
+    save_data_to_db(companies_data, vacancies_data, 'hh_info_bd', **params)
     conn.close()
 
+    # Подключение к базе данных
     conn = psycopg2.connect(dbname='hh_info_bd', **params)
+
+    # Работа DBManager
     db_m = DBManager(conn)
 
     print("""Введите ваш запрос:
