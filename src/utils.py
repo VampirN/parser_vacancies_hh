@@ -7,7 +7,7 @@ import psycopg2
 def get_companies():
     """
     Получает имя компаний и их ID из файла companies_id.json,
-    :return: список словарей с информацией о компаниях
+    возвращает список словарей с информацией о компаниях
     """
     with open('companies_id.json', 'r', encoding='utf-8') as f:
         companies_data = json.load(f)[0]
@@ -26,7 +26,7 @@ def get_vacancies(data):
     """
     Получает информацию о вакансиях для компаний из списка data
     :param data: список словарей с информацией о компаниях
-    :return: список словарей с информацией о вакансиях для каждой компании
+    возвращает список словарей с информацией о вакансиях для каждой компании
     """
     vacancies_info = []
     for company_data in data:
@@ -45,12 +45,12 @@ def create_db(database_name: str, params: dict) -> None:
     """
     Создание базы данных для сохранения данных о компаниях и вакансиях
     """
-    conn = psycopg2.connect(dbname='hh_info_bd', **params)
+    conn = psycopg2.connect(dbname="postgres", **params)
     conn.autocommit = True
     cur = conn.cursor()
 
     try:
-        cur.execute(f"DROP DATABASE {database_name}")
+        cur.execute(f"DROP DATABASE IF EXISTS {database_name}")
     except Exception as e:
         print(f"Ошибка создания базы данных: {e}")
     finally:
